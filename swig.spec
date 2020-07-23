@@ -1,23 +1,11 @@
 Name:          swig
-Version:       3.0.12
-Release:       22
+Version:       4.0.2
+Release:       1
 Summary:       Links C/C++/Objective C to languages for some advanced programing
 License:       GPLv3+ and BSD
 URL:           http://swig.sourceforge.net/
 Source0:       http://downloads.sourceforge.net/project/swig/swig/swig-%{version}/swig-%{version}.tar.gz
 Source1:       description.h2m
-
-Patch0001:     swig308-Do-not-use-isystem.patch
-Patch0002:     swig-3.0.12-Fix-testsuite-to-work-without-.-in-INC.patch
-Patch0003:     https://patch-diff.githubusercontent.com/raw/swig/swig/pull/968/swig-node-v7.patch
-Patch0004:     swig-3.0.12-Fix-generated-code-for-constant-expressions-containi.patch
-Patch0005:     swig-3.0.12-Fix-type-promotion-wrapping-some-non-trivial-constan.patch
-Patch0006:     swig-3.0.12-Correct-php-testcase.patch
-Patch0007:     swig-3.0.12-Fix-go-version-matching-in-configure-for-go1.10.patch
-Patch0008:     swig-3.0.12-Coverity-fix-issue-reported-for-SWIG_Python_FixMetho.patch
-Patch0009:     swig-3.0.12-Fix-Coverity-issue-reported-for-setslice-pycontainer.patch
-Patch0010:     swig-3.0.12-Coverity-fix-issue-reported-for-wrapper-argument-che.patch
-Patch0011:     swig-3.0.12-Coverity-fix-issue-reported-for-SWIG_Python_ConvertF.patch
 
 BuildRequires: perl-interpreter pcre-devel python3-devel autoconf automake gawk dos2unix
 BuildRequires: gcc-c++ help2man perl-devel perl(base) perl(Config) perl(Devel::Peek)
@@ -110,5 +98,8 @@ install -pm 644 Tools/swig.gdb %{buildroot}%{_datadir}/%{name}/gdb
 %{_mandir}/man1/swig.1*
 
 %changelog
+* Thu Jul 23 2020 shixuantong <shixuantong@huawei.com> - 4.0.2-1
+- update to 4.0.2-1
+
 * Fri Nov 29 2019 wutao <wutao61@huawei.com> - 3.0.12-22
 - Package init
