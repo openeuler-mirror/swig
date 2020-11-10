@@ -1,6 +1,6 @@
 Name:          swig
 Version:       3.0.12
-Release:       22
+Release:       23
 Summary:       Links C/C++/Objective C to languages for some advanced programing
 License:       GPLv3+ and BSD
 URL:           http://swig.sourceforge.net/
@@ -9,7 +9,8 @@ Source1:       description.h2m
 
 Patch0001:     swig308-Do-not-use-isystem.patch
 Patch0002:     swig-3.0.12-Fix-testsuite-to-work-without-.-in-INC.patch
-Patch0003:     https://patch-diff.githubusercontent.com/raw/swig/swig/pull/968/swig-node-v7.patch
+#https://patch-diff.githubusercontent.com/raw/swig/swig/pull/968/swig-node-v7.patch
+Patch0003:     swig-node-v7.patch
 Patch0004:     swig-3.0.12-Fix-generated-code-for-constant-expressions-containi.patch
 Patch0005:     swig-3.0.12-Fix-type-promotion-wrapping-some-non-trivial-constan.patch
 Patch0006:     swig-3.0.12-Correct-php-testcase.patch
@@ -27,6 +28,8 @@ BuildRequires: lua-devel ruby-devel
 
 Provides:      %{name}-gdb = %{version}-%{release}
 Obsoletes:     %{name}-gdb < %{version}-%{release}
+Requires:      %{name}-help = %{version}-%{release}
+
 
 %description
 SWIG is a compiler that attempts to make it easy to integrate C, C++,
@@ -110,5 +113,8 @@ install -pm 644 Tools/swig.gdb %{buildroot}%{_datadir}/%{name}/gdb
 %{_mandir}/man1/swig.1*
 
 %changelog
+* Fri Nov 06 2020 liuweibo <liuweibo10@huawei.com> - 3.0.12-23
+- append help requires to swig
+
 * Fri Nov 29 2019 wutao <wutao61@huawei.com> - 3.0.12-22
 - Package init
