@@ -1,6 +1,6 @@
 Name:          swig
 Version:       4.0.2
-Release:       1
+Release:       2
 Summary:       Links C/C++/Objective C to languages for some advanced programing
 License:       GPLv3+ and BSD
 URL:           http://swig.sourceforge.net/
@@ -45,25 +45,23 @@ Help document for the swig package.
 %configure --without-ocaml --without-python --with-python3=%__python3 --without-go --disable-ccache;
 %make_build
 
+%check
 make check
 
 %install
-make clean-examples
-
-cd Examples/
-find -type f -name 'Makefile.in' -delete -print
-
-rm -rf test-suite
-find -type f -name '*.dsp' -delete -print
-find -type f -name '*.dsw' -delete -print
-
-for all in `find -type f`; do
-    dos2unix -k $all
-    chmod -x $all
-done
-cd -
-
 %make_install
+install -d %{buildroot}%{_datadir}/swig
+cp -a Examples %{buildroot}%{_datadir}/swig/examples
+rm -rf %{buildroot}%{_datadir}/swig/examples/test-suite
+
+# rm files that are not needed for running or rebuilding the examples
+find %{buildroot}%{_datadir}/swig \
+	-name '*.dsp' -o -name '*.vcproj' -o -name '*.sln' -o \
+	-name '*.o' -o -name '*_wrap.c' -o -name '*.csproj' -o \
+	-name '*.dsw' | xargs rm
+
+find %{buildroot}%{_datadir}/swig -name '*.h' -perm /111 | \
+	xargs --no-run-if-empty chmod -x
 
 echo "Options:" >help_swig
 %{buildroot}%{_bindir}/swig --help >>help_swig
@@ -87,17 +85,26 @@ install -pm 644 Tools/swig.gdb %{buildroot}%{_datadir}/%{name}/gdb
 %files
 %{_bindir}/%{name}
 %{_datadir}/%{name}
+%exclude %{_datadir}/%{name}/examples
 %license LICENSE LICENSE-GPL LICENSE-UNIVERSITIES
+
 %doc COPYRIGHT
 %exclude %{_datadir}/%name/%{version}/octave/std_carray.i
 
 %files help
 %license LICENSE LICENSE-GPL LICENSE-UNIVERSITIES
-%doc Doc Examples README TODO
+%doc Doc/{Devel,Manual} README TODO
+%{_datadir}/%{name}/examples
 %doc ANNOUNCE CHANGES CHANGES.current
 %{_mandir}/man1/swig.1*
 
 %changelog
+* Tue Feb 23 2021 licihua <licihua@huawei.com> - 4.0.2-2
+- Type:bugfix
+- CVE:NA
+- SUG:NA
+- DESC:Move make check stage to %check
+
 * Thu Jul 23 2020 shixuantong <shixuantong@huawei.com> - 4.0.2-1
 - update to 4.0.2-1
 
