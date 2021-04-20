@@ -1,6 +1,6 @@
 Name:          swig
 Version:       3.0.12
-Release:       24
+Release:       25
 Summary:       Links C/C++/Objective C to languages for some advanced programing
 License:       GPLv3+ and BSD
 URL:           http://swig.sourceforge.net/
@@ -62,7 +62,7 @@ Help document for the swig package.
 
 
 %check
-make check
+%make_build check
 
 %install
 %make_install
@@ -115,6 +115,12 @@ install -pm 644 Tools/swig.gdb %{buildroot}%{_datadir}/%{name}/gdb
 %{_mandir}/man1/swig.1*
 
 %changelog
+* Tue Apr 20 2021 panxiaohe <panxiaohe@huawei.com> - 3.0.12-25
+- Type:enhancement
+- ID:NA
+- SUG:NA
+- DESC:use make macros to run check in parallel
+
 * Tue Feb 23 2021 licihua <licihua@huawei.com> - 3.0.12-24
 - Type:bugfix
 - CVE:NA
