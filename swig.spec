@@ -1,6 +1,6 @@
 Name:          swig
 Version:       4.0.2
-Release:       4
+Release:       5
 Summary:       Links C/C++/Objective C to languages for some advanced programing
 License:       GPLv3+ and BSD
 URL:           http://swig.sourceforge.net/
@@ -10,6 +10,7 @@ Source1:       description.h2m
 Patch1:        backport-PCRE2.patch
 Patch2:        backport-Few-more-PCRE-to-PCRE2-changes.patch
 Patch3:        backport-configure.ac-Add-missing-shell-quoting.patch
+Patch4:        Backport-php-8-support-from-upstream.patch
 
 BuildRequires: perl-interpreter pcre2-devel python3-devel autoconf automake gawk dos2unix
 BuildRequires: gcc-c++ help2man perl-devel perl(base) perl(Config) perl(Devel::Peek)
@@ -103,6 +104,12 @@ install -pm 644 Tools/swig.gdb %{buildroot}%{_datadir}/%{name}/gdb
 %{_mandir}/man1/swig.1*
 
 %changelog
+* Mon Jun 05 2023 misaka00251 <liuxin@iscas.ac.cn> - 4.0.2-5
+- Type:enhancement
+- ID:NA
+- SUG:NA
+- DESC:Backport php 8 support from upstream
+
 * Thu Jun 9 2022 zoulin <zoulin13@h-partners.com> - 4.0.2-4
 - Type:enhancement
 - ID:NA
