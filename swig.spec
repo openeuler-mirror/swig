@@ -1,18 +1,11 @@
 Name:          swig
-Version:       4.0.2
-Release:       6
+Version:       4.1.1
+Release:       1
 Summary:       Links C/C++/Objective C to languages for some advanced programing
 License:       GPLv3+ and BSD
 URL:           http://swig.sourceforge.net/
 Source0:       http://downloads.sourceforge.net/project/swig/swig/swig-%{version}/swig-%{version}.tar.gz
 Source1:       description.h2m
-
-Patch1:        backport-PCRE2.patch
-Patch2:        backport-Few-more-PCRE-to-PCRE2-changes.patch
-Patch3:        backport-configure.ac-Add-missing-shell-quoting.patch
-Patch4:        Backport-php-8-support-from-upstream.patch
-Patch5:        0001-Ruby-Fix-deprecation-warnings-with-Ruby-3.x.patch
-Patch6:        0001-gcc-12-warning-fix-in-test-case.patch
 
 BuildRequires: perl-interpreter pcre2-devel python3-devel autoconf automake gawk dos2unix
 BuildRequires: gcc-c++ help2man perl-devel perl(base) perl(Config) perl(Devel::Peek)
@@ -106,6 +99,9 @@ install -pm 644 Tools/swig.gdb %{buildroot}%{_datadir}/%{name}/gdb
 %{_mandir}/man1/swig.1*
 
 %changelog
+* Thu Aug 24 2023 liyanan <thistleslyn@163.com> - 4.1.1-1
+- Update to 4.1.1
+
 * Thu Jul 13 2023 chenchen <chen_aka_jan@163.com> - 4.0.2-6
 - fix build error caused by upgrading gcc to 12.3.0
 
