@@ -1,0 +1,25 @@
+From d7f1cd2a91f5004086fcc0246b0d4194e32d447c Mon Sep 17 00:00:00 2001
+From: 15859157387 <977713017@qq.com>
+Date: Tue, 24 Oct 2023 10:18:07 +0800
+Subject: [PATCH] fix swig bug
+
+---
+ Lib/ocaml/ocamlrun.swg | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Lib/ocaml/ocamlrun.swg b/Lib/ocaml/ocamlrun.swg
+index 5a923c5..53ad952 100644
+--- a/Lib/ocaml/ocamlrun.swg
++++ b/Lib/ocaml/ocamlrun.swg
+@@ -369,7 +369,7 @@ extern "C" {
+ 	if( !p || len < 0 ) CAMLreturn(caml_val_ptr( (void *)p, 0 ));
+ 	vv = caml_swig_alloc(1,C_string);
+ 	SWIG_Store_field(vv,0,caml_alloc_string(len));
+-	memcpy(String_val(SWIG_Field(vv,0)),p,len);
++	memcpy(Bp_val(SWIG_Field(vv,0)),p,len);
+ 	CAMLreturn(vv);
+     }
+ 
+-- 
+2.27.0
+
